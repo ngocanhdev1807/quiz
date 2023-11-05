@@ -1,12 +1,12 @@
 import { WebSocket } from 'ws'
-import testerDatabase from '~/services/database/tester.database'
+import database from '~/services/database/database'
 
 class HandleQuizConnection {
   public result = (ws: WebSocket) => {
     console.log('Quiz Client connected')
 
     const userData = async () => {
-      ws.send(JSON.stringify(await testerDatabase.getCollection('quizs').find().toArray()))
+      ws.send(JSON.stringify(await database.getCollection('quizs').find().toArray()))
     }
     userData()
 
